@@ -2,7 +2,7 @@
 # set FLASK_ENV=development
 # flask run
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import csv
 
 app = Flask(__name__)
@@ -33,8 +33,8 @@ def submit_form():
         try:
             data = request.form.to_dict()
             write_to_csv(data)
-            return 'form submitted'
+            return redirect('/contact.html')
         except:
-            return 'did not saves'
+            return 'something went wrong. Try again!'
     else:
         return 'ups'
